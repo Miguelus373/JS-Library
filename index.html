@@ -9,23 +9,39 @@
   <body>
     <a href="#form-container">Add new book</a>
     <div id="form-container">
-      <a href="#">x</a>
-      <form action="" name="newBook">
-        <input type="input" name="title" id="title" placeholder="Title" /> <br />
-        <input type="input" name="author" id="author"  placeholder="Author" /> <br />
-        <input type="number" name="pages" id="pages" placeholder="Number of Pages" />
-        <br />
-        <label for="read">Did you read it?</label> <br />
-        <input type="radio" name="read" id="read" value="yes" />
-        <input type="radio" name="read" id="unread" value="no" checked="checked" /> <br />
-        <input type="submit" value="Add" onclick="onclickk()" />
+      <form action="" name="newBook" class="book-form" >
+        <a href="#">x</a>
+        <label for="read">Title</label> <br>
+        <input type="input" name="title" id="title" placeholder="Wonder's Book" /> <br>
+
+        <label for="read">Author</label> <br>
+        <input type="input" name="author" id="author" placeholder="John Doe" /> <br>
+
+        <label for="read">Number of Pages</label> <br>
+        <input 
+          type="number"
+          name="pages"
+          id="pages"
+          placeholder="1234"
+        /> <br>
+
+        <label for="read">Did you read it?</label> <br>
+        Yes <input type="radio" name="read" id="read" value="yes" /> 
+        No <input
+          type="radio"
+          name="read"
+          id="unread"
+          value="no"
+          checked="checked"
+        /> <br>
+        <a onclick="createBook()" href="#" class="button">Add</a>
       </form>
     </div>
 
     <div class="card-group">
       <div class="card">
         <div class="container">
-          <h4>Title: <b>heaven</b></h4>
+          <h4>Title:</h4>
           <p>Author:</p>
           <p>Number of pages:</p>
           <p>completed:</p>

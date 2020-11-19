@@ -1,38 +1,46 @@
 let library = [];
 
-function Book([title, author, pages, read]) {
+let t = document.getElementById("title");
+let a = document.getElementById("author");
+let p = document.getElementById("pages");
+let no = document.getElementById("unread");
+let yes = document.getElementById("read");
+
+function Book(title, author, pages, read) {
   this.title = title
   this.author = author
   this.pages = pages
   this.read = read
 }
 
-function validation(form) {
-  let inputValid = form;
+function validation() {
+  let ti = t.value;
+  let ai = a.value;
+  let pi = p.value;
 
-  if (form[0] == '' || form[1] == '' || form[2] == '') {
-    alert('Check your data')
-  } else {
-    library.push(form)
+  if (ti === '' || ai === '' || pi === '') {
+    console.log('All fields should be filled');
+    alert('All fields should be filled');
+    return false
   }
+
+  return true
 }
 
 function getInputValue() {
-  let title = document.getElementById("title").value;
-  let author = document.getElementById("author").value;
-  let pages = document.getElementById("pages").value;
-  let status;
+  let newBook;
 
-  if (document.getElementById("unread").checked) {
-    status = document.getElementById("unread").value;
+  if (no.checked) {
+    newBook = new Book(t.value, a.value, p.value, 'No');
   } else {
-    status = document.getElementById("read").value;
+    newBook = new Book(t.value, a.value, p.value, 'Yes');
   }
 
-  let inputs = [title, author, pages, status];
-  return inputs
+  return library.push(newBook)
 }
 
-function onclickk() {
-  validation(getInputValue())
+function createBook() {
+  if (validation()) {
+    getInputValue();
+  }
 }
