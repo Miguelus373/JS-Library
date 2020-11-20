@@ -1,38 +1,31 @@
-let library = [];
+/* eslint-disable no-unused-vars */
 
-let t = document.getElementById("title");
-let a = document.getElementById("author");
-let p = document.getElementById("pages");
-let no = document.getElementById("unread");
-let yes = document.getElementById("read");
-let cardGroup = document.querySelector(".card-group")
+const library = [];
+
+const t = document.getElementById('title');
+const a = document.getElementById('author');
+const p = document.getElementById('pages');
+const no = document.getElementById('unread');
+const cardGroup = document.querySelector('.card-group');
 
 function Book(title, author, pages, read) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.read = read
-}
-
-function createBook() {
-  if (validation()) {
-    addToLibrary();
-    cards(library[library.length - 1]);
-    resetForm()
-  }
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
 function validation() {
-  let ti = t.value;
-  let ai = a.value;
-  let pi = p.value;
+  const ti = t.value;
+  const ai = a.value;
+  const pi = p.value;
 
   if (ti === '' || ai === '' || pi === '') {
     alert('There are some fields missing');
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }
 
 function addToLibrary() {
@@ -48,48 +41,56 @@ function addToLibrary() {
 }
 
 function resetForm() {
-  t.value = ''
-  a.value = ''
-  p.value = ''
+  t.value = '';
+  a.value = '';
+  p.value = '';
+}
+
+function addButtons(card) {
+  const cardDelete = document.createElement('button');
+  cardDelete.innerHTML = 'Remove';
+  cardDelete.addEventListener('click', (event) => {
+    event.target.parentNode.parentNode.remove();
+  });
+
+  const toggleStatus = document.createElement('button');
+  toggleStatus.innerHTML = 'Toggle Status';
+  toggleStatus.addEventListener('click', (event) => {
+    event.target.parentNode.lastElementChild.innerHTML = 'Status: Read';
+  });
+
+  card.append(cardDelete, toggleStatus);
 }
 
 function cards(card) {
-  let cardy = document.createElement("div");
-  cardy.classList.add("card");
+  const cardy = document.createElement('div');
+  cardy.classList.add('card');
 
-  let cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
+  const cardBody = document.createElement('div');
+  cardBody.classList.add('card-body');
 
-  let cardTitle = document.createElement("h4");
+  const cardTitle = document.createElement('h4');
   cardTitle.textContent = `Title: ${card.title}`;
 
-  let cardAuthor = document.createElement("p");
+  const cardAuthor = document.createElement('p');
   cardAuthor.textContent = `Author: ${card.author}`;
 
-  let cardPages = document.createElement("p");
+  const cardPages = document.createElement('p');
   cardPages.textContent = `${card.pages} Pages`;
 
-  let cardStatus = document.createElement("p");
+  const cardStatus = document.createElement('p');
   cardStatus.textContent = `Status: ${card.read}`;
 
   addButtons(cardBody);
   cardBody.append(cardTitle, cardAuthor, cardPages, cardStatus);
   cardy.appendChild(cardBody);
-  cardGroup.appendChild(cardy)
+  cardGroup.appendChild(cardy);
 }
 
-function addButtons(card) {
-  let cardDelete = document.createElement("button");
-  cardDelete.innerHTML = "Remove";
-  cardDelete.addEventListener("click", (event) => {
-    event.target.parentNode.parentNode.remove();
-  })
-
-  let toggleStatus = document.createElement("button");
-  toggleStatus.innerHTML = "Toggle Status";
-  toggleStatus.addEventListener("click", (event) => {
-    event.target.parentNode.lastElementChild.innerHTML = "Status: Read";
-  });
-
-  card.append(cardDelete, toggleStatus,)
+function createBook() {
+  if (validation()) {
+    addToLibrary();
+    cards(library[library.length - 1]);
+    resetForm();
+  }
 }
