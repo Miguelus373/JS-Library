@@ -1,18 +1,30 @@
+body {
+  margin: 0;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 3rem;
+}
+
 a {
   text-decoration: none;
   padding: 4px;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid grey;
+  margin: 0.5rem;
   transition: 0.3s;
-  width: 300px;
   height: 200px;
   padding: 12px;
+  box-sizing: border-box;
+  width: 23%;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.2);
 }
 
 .card-body {
@@ -20,13 +32,18 @@ a {
 }
 
 .card-group {
+  box-sizing: border-box;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
+  padding: 2rem;
+  justify-content: flex-start;
 }
 
 .add-btn {
-  margin: 30px;
+  background-color: green;
+  color: #fff;
+  padding: 0.8rem 1rem;
 }
 
 #form-container {
@@ -68,5 +85,5 @@ a {
 .book-form .button {
   position: relative;
   align-self: center;
-  background-color: limegreen;
+  background-color: green;
 }

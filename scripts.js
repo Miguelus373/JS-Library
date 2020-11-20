@@ -5,8 +5,7 @@ let a = document.getElementById("author");
 let p = document.getElementById("pages");
 let no = document.getElementById("unread");
 let yes = document.getElementById("read");
-let cardGroup = document.querySelectorAll(".card-group")
-cardGroup.style.color = "blue";
+let cardGroup = document.querySelector(".card-group")
 
 function Book(title, author, pages, read) {
   this.title = title
@@ -15,71 +14,69 @@ function Book(title, author, pages, read) {
   this.read = read
 }
 
+function createBook() {
+  if (validation()) {
+    addToLibrary();
+    cards(library[library.length - 1]);
+    resetForm()
+  }
+}
+
 function validation() {
   let ti = t.value;
   let ai = a.value;
   let pi = p.value;
 
   if (ti === '' || ai === '' || pi === '') {
-    console.log('All fields should be filled');
-    alert('All fields should be filled');
+    alert('There are some fields missing');
     return false
   }
 
   return true
 }
 
-function getInputValue() {
+function addToLibrary() {
   let newBook;
 
   if (no.checked) {
-    newBook = new Book(t.value, a.value, p.value, 'No');
+    newBook = new Book(t.value, a.value, p.value, 'Unread');
   } else {
-    newBook = new Book(t.value, a.value, p.value, 'Yes');
+    newBook = new Book(t.value, a.value, p.value, 'Read');
   }
 
-  return library.push(newBook)
+  return library.push(newBook);
 }
 
-function createBook() {
-  if (validation()) {
-    getInputValue();
-    display();
-  }
-}
-
-function display() {
-  for(let i = 0; i < library.length; i++){
-      cards(library[i]);
-  }
+function resetForm() {
+  t.value = ''
+  a.value = ''
+  p.value = ''
 }
 
 function cards(card) {
-   let cardy = document.createElement("div");
-   cardy.classList.add("card");
+  let cardy = document.createElement("div");
+  cardy.classList.add("card");
 
-    let cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
-   
+  let cardBody = document.createElement("div");
+  cardBody.classList.add("card-body");
 
-    let cardTitle  = document.createElement("h4");
-    cardTitle.textContent = card.title;
-    cardBody.appendChild(cardTitle);
+  let cardTitle = document.createElement("h4");
+  cardTitle.textContent = 'Title: ' + card.title;
+  cardBody.appendChild(cardTitle);
 
-    let cardAuthor = document.createElement("p");
-    cardAuthor.textContent = card.author;
-    cardBody.appendChild(cardAuthor);
+  let cardAuthor = document.createElement("p");
+  cardAuthor.textContent = 'Author: ' + card.author;
+  cardBody.appendChild(cardAuthor);
 
-    let cardPages  = document.createElement("p");
-    cardPages.textContent = card.pages;
-    cardBody.appendChild(cardPages);
+  let cardPages = document.createElement("p");
+  cardPages.textContent = card.pages + ' Pages';
+  cardBody.appendChild(cardPages);
 
-    let cardStatus  = document.createElement("p");
-    cardStatus.textContent = card.read;
-    cardBody.appendChild(cardStatus);
+  let cardStatus = document.createElement("p");
+  cardStatus.textContent = 'Status: ' + card.read;
+  cardBody.appendChild(cardStatus);
 
+  cardy.appendChild(cardBody);
 
-     cardy.appendChild(cardBody);
-
-     cardGroup.appendChild(cardy)
+  cardGroup.appendChild(cardy)
 }
