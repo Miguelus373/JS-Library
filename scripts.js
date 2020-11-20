@@ -29,13 +29,7 @@ function validation() {
 }
 
 function addToLibrary() {
-  let newBook;
-
-  if (no.checked) {
-    newBook = new Book(t.value, a.value, p.value, 'Unread');
-  } else {
-    newBook = new Book(t.value, a.value, p.value, 'Read');
-  }
+  const newBook = new Book(t.value, a.value, p.value, no.checked ? 'Unread' : 'Read');
 
   return library.push(newBook);
 }
@@ -56,7 +50,8 @@ function addButtons(card) {
   const toggleStatus = document.createElement('button');
   toggleStatus.innerHTML = 'Toggle Status';
   toggleStatus.addEventListener('click', (event) => {
-    event.target.parentNode.lastElementChild.innerHTML = 'Status: Read';
+    const status = event.target.parentNode.lastElementChild;
+    status.innerHTML = status.innerHTML === 'Status: Unread' ? 'Status: Read' : 'Status: Unread';
   });
 
   card.append(cardDelete, toggleStatus);
