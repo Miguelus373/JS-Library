@@ -17,7 +17,7 @@ a {
   border: 1px solid grey;
   margin: 0.5rem;
   transition: 0.3s;
-  height: 200px;
+  height: auto;
   padding: 12px;
   box-sizing: border-box;
   width: 23%;

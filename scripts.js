@@ -71,19 +71,25 @@ function cards(card) {
 
   let cardStatus = document.createElement("p");
   cardStatus.textContent = `Status: ${card.read}`;
-  
-  let cardDelete = document.createElement("button");
-  cardDelete.innerHTML = "Remove";
-  cardDelete.setAttribute("id","btn-remove");
-  cardDelete.addEventListener("click", (event) => { 
-    event.target.parentNode.parentNode.remove();
-  })
 
-  cardBody.append(cardTitle, cardAuthor, cardPages, cardStatus, cardDelete);
+  addButtons(cardBody);
+  cardBody.append(cardTitle, cardAuthor, cardPages, cardStatus);
   cardy.appendChild(cardBody);
   cardGroup.appendChild(cardy)
 }
 
-function removebuttons() {
+function addButtons(card) {
+  let cardDelete = document.createElement("button");
+  cardDelete.innerHTML = "Remove";
+  cardDelete.addEventListener("click", (event) => {
+    event.target.parentNode.parentNode.remove();
+  })
 
+  let toggleStatus = document.createElement("button");
+  toggleStatus.innerHTML = "Toggle Status";
+  toggleStatus.addEventListener("click", (event) => {
+    event.target.parentNode.lastElementChild.innerHTML = "Status: Read";
+  });
+
+  card.append(cardDelete, toggleStatus,)
 }
