@@ -72,7 +72,18 @@ function cards(card) {
   let cardStatus = document.createElement("p");
   cardStatus.textContent = `Status: ${card.read}`;
   
-  cardBody.append(cardTitle, cardAuthor, cardPages, cardStatus);
+  let cardDelete = document.createElement("button");
+  cardDelete.innerHTML = "Remove";
+  cardDelete.setAttribute("id","btn-remove");
+  cardDelete.addEventListener("click", (event) => { 
+    event.target.parentNode.parentNode.remove();
+  })
+
+  cardBody.append(cardTitle, cardAuthor, cardPages, cardStatus, cardDelete);
   cardy.appendChild(cardBody);
   cardGroup.appendChild(cardy)
+}
+
+function removebuttons() {
+
 }
