@@ -61,22 +61,18 @@ function cards(card) {
   cardBody.classList.add("card-body");
 
   let cardTitle = document.createElement("h4");
-  cardTitle.textContent = 'Title: ' + card.title;
-  cardBody.appendChild(cardTitle);
+  cardTitle.textContent = `Title: ${card.title}`;
 
   let cardAuthor = document.createElement("p");
-  cardAuthor.textContent = 'Author: ' + card.author;
-  cardBody.appendChild(cardAuthor);
+  cardAuthor.textContent = `Author: ${card.author}`;
 
   let cardPages = document.createElement("p");
-  cardPages.textContent = card.pages + ' Pages';
-  cardBody.appendChild(cardPages);
+  cardPages.textContent = `${card.pages} Pages`;
 
   let cardStatus = document.createElement("p");
-  cardStatus.textContent = 'Status: ' + card.read;
-  cardBody.appendChild(cardStatus);
-
+  cardStatus.textContent = `Status: ${card.read}`;
+  
+  cardBody.append(cardTitle, cardAuthor, cardPages, cardStatus);
   cardy.appendChild(cardBody);
-
   cardGroup.appendChild(cardy)
 }
