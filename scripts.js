@@ -8,31 +8,26 @@ const p = document.getElementById('pages');
 const no = document.getElementById('unread');
 const cardGroup = document.querySelector('.card-group');
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+const bookFactory = (title, author, pages, status) => {
+  const validation = () => {
+    if (title === '' || author === '' || pages === '') {
+      // eslint-disable-next-line no-alert
+      alert('There are some fields missing');
+      return false;
+    }
+    return true;
+  };
 
-function validation() {
-  const ti = t.value;
-  const ai = a.value;
-  const pi = p.value;
+  const addToLibrary = () => {
+    library.push({
+      title, author, pages, status,
+    });
+  };
 
-  if (ti === '' || ai === '' || pi === '') {
-    alert('There are some fields missing');
-    return false;
-  }
-
-  return true;
-}
-
-function addToLibrary() {
-  const newBook = new Book(t.value, a.value, p.value, no.checked ? 'Unread' : 'Read');
-
-  return library.push(newBook);
-}
+  return {
+    title, author, pages, status, addToLibrary, validation,
+  };
+};
 
 function resetForm() {
   t.value = '';
@@ -83,8 +78,10 @@ function cards(card) {
 }
 
 function createBook() {
-  if (validation()) {
-    addToLibrary();
+  const newBook = bookFactory(t.value, a.value, p.value, no.checked ? 'Unread' : 'Read');
+
+  if (newBook.validation()) {
+    newBook.addToLibrary();
     cards(library[library.length - 1]);
     resetForm();
   }
